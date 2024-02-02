@@ -14,14 +14,14 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
  * 
@@ -778,7 +778,7 @@ export interface IambackofficeUserTwoFactorConfiguration {
  * @interface ProtobufAny
  */
 export interface ProtobufAny {
-    [key: string]: object;
+    [key: string]: any;
 
     /**
      * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one \"/\" character. The last segment of the URL\'s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading \".\" is not accepted).  In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows:  * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a [google.protobuf.Type][]   value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the   URL, or have them precompiled into a binary to avoid any   lookup. Therefore, binary compatibility needs to be preserved   on changes to types. (Use versioned type names to manage   breaking changes.)  Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com.  Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
@@ -826,7 +826,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeAssignRoles: async (body: IambackofficeAssignRolesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeAssignRoles: async (body: IambackofficeAssignRolesRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeAssignRoles', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/AssignRoles`;
@@ -862,7 +862,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeCreateGroup: async (body: IambackofficeCreateGroupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeCreateGroup: async (body: IambackofficeCreateGroupRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeCreateGroup', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/CreateGroup`;
@@ -897,7 +897,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeDisableUserMfa: async (body: IambackofficeDisableUserMfaRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeDisableUserMfa: async (body: IambackofficeDisableUserMfaRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeDisableUserMfa', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/DisableUserMfa`;
@@ -932,7 +932,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeEnableUserMfa: async (body: IambackofficeEnableUserMfaRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeEnableUserMfa: async (body: IambackofficeEnableUserMfaRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeEnableUserMfa', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/EnableUserMfa`;
@@ -968,7 +968,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeGenerateSecretForQR: async (body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeGenerateSecretForQR: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeGenerateSecretForQR', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/GenerateSecretForQR`;
@@ -1004,7 +1004,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeLogin: async (body: IambackofficeLoginRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeLogin: async (body: IambackofficeLoginRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeLogin', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/Login`;
@@ -1040,7 +1040,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeLoginMfa: async (body: IambackofficeLoginMfaRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeLoginMfa: async (body: IambackofficeLoginMfaRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeLoginMfa', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/LoginMfa`;
@@ -1075,7 +1075,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeLogout: async (body: IambackofficeLogoutRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeLogout: async (body: IambackofficeLogoutRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeLogout', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/Logout`;
@@ -1111,7 +1111,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeRegister: async (body: IambackofficeRegistrationRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeRegister: async (body: IambackofficeRegistrationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeRegister', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/Register`;
@@ -1147,7 +1147,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeRegisterAgent: async (body: IambackofficeRegisterAgentRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeRegisterAgent: async (body: IambackofficeRegisterAgentRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeRegisterAgent', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/RegisterAgent`;
@@ -1182,7 +1182,7 @@ export const IamBackofficeApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        iamBackofficeUnassignRoles: async (body: IambackofficeUnassignRolesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        iamBackofficeUnassignRoles: async (body: IambackofficeUnassignRolesRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('iamBackofficeUnassignRoles', 'body', body)
             const localVarPath = `/iambackoffice.IamBackoffice/UnassignRoles`;
@@ -1228,9 +1228,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeAssignRoles(body: IambackofficeAssignRolesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeAssignRolesResponse>> {
+        async iamBackofficeAssignRoles(body: IambackofficeAssignRolesRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeAssignRolesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeAssignRoles(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeAssignRoles']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1239,9 +1241,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeCreateGroup(body: IambackofficeCreateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeCreateGroupResponse>> {
+        async iamBackofficeCreateGroup(body: IambackofficeCreateGroupRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeCreateGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeCreateGroup(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeCreateGroup']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1249,9 +1253,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeDisableUserMfa(body: IambackofficeDisableUserMfaRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUserMfaResponse>> {
+        async iamBackofficeDisableUserMfa(body: IambackofficeDisableUserMfaRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUserMfaResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeDisableUserMfa(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeDisableUserMfa']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1259,9 +1265,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeEnableUserMfa(body: IambackofficeEnableUserMfaRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUserMfaResponse>> {
+        async iamBackofficeEnableUserMfa(body: IambackofficeEnableUserMfaRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUserMfaResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeEnableUserMfa(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeEnableUserMfa']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1270,9 +1278,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeGenerateSecretForQR(body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeGenerateSecretForQRResponse>> {
+        async iamBackofficeGenerateSecretForQR(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeGenerateSecretForQRResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeGenerateSecretForQR(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeGenerateSecretForQR']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1281,9 +1291,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeLogin(body: IambackofficeLoginRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLoginResponse>> {
+        async iamBackofficeLogin(body: IambackofficeLoginRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLoginResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeLogin(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeLogin']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1292,9 +1304,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeLoginMfa(body: IambackofficeLoginMfaRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLoginResponse>> {
+        async iamBackofficeLoginMfa(body: IambackofficeLoginMfaRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLoginResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeLoginMfa(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeLoginMfa']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1302,9 +1316,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeLogout(body: IambackofficeLogoutRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLogoutResponse>> {
+        async iamBackofficeLogout(body: IambackofficeLogoutRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeLogoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeLogout(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeLogout']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1313,9 +1329,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeRegister(body: IambackofficeRegistrationRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeRegistrationResponse>> {
+        async iamBackofficeRegister(body: IambackofficeRegistrationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeRegistrationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeRegister(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeRegister']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1324,9 +1342,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeRegisterAgent(body: IambackofficeRegisterAgentRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeRegistrationResponse>> {
+        async iamBackofficeRegisterAgent(body: IambackofficeRegisterAgentRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeRegistrationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeRegisterAgent(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeRegisterAgent']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1334,9 +1354,11 @@ export const IamBackofficeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async iamBackofficeUnassignRoles(body: IambackofficeUnassignRolesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUnassignRolesResponse>> {
+        async iamBackofficeUnassignRoles(body: IambackofficeUnassignRolesRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IambackofficeUnassignRolesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.iamBackofficeUnassignRoles(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['IamBackofficeApi.iamBackofficeUnassignRoles']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -1472,7 +1494,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeAssignRoles(body: IambackofficeAssignRolesRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeAssignRoles(body: IambackofficeAssignRolesRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeAssignRoles(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1484,7 +1506,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeCreateGroup(body: IambackofficeCreateGroupRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeCreateGroup(body: IambackofficeCreateGroupRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeCreateGroup(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1495,7 +1517,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeDisableUserMfa(body: IambackofficeDisableUserMfaRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeDisableUserMfa(body: IambackofficeDisableUserMfaRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeDisableUserMfa(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1506,7 +1528,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeEnableUserMfa(body: IambackofficeEnableUserMfaRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeEnableUserMfa(body: IambackofficeEnableUserMfaRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeEnableUserMfa(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1518,7 +1540,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeGenerateSecretForQR(body: object, options?: AxiosRequestConfig) {
+    public iamBackofficeGenerateSecretForQR(body: object, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeGenerateSecretForQR(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1530,7 +1552,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeLogin(body: IambackofficeLoginRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeLogin(body: IambackofficeLoginRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeLogin(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1542,7 +1564,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeLoginMfa(body: IambackofficeLoginMfaRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeLoginMfa(body: IambackofficeLoginMfaRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeLoginMfa(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1553,7 +1575,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeLogout(body: IambackofficeLogoutRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeLogout(body: IambackofficeLogoutRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeLogout(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1565,7 +1587,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeRegister(body: IambackofficeRegistrationRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeRegister(body: IambackofficeRegistrationRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeRegister(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1577,7 +1599,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeRegisterAgent(body: IambackofficeRegisterAgentRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeRegisterAgent(body: IambackofficeRegisterAgentRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeRegisterAgent(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1588,7 +1610,7 @@ export class IamBackofficeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IamBackofficeApi
      */
-    public iamBackofficeUnassignRoles(body: IambackofficeUnassignRolesRequest, options?: AxiosRequestConfig) {
+    public iamBackofficeUnassignRoles(body: IambackofficeUnassignRolesRequest, options?: RawAxiosRequestConfig) {
         return IamBackofficeApiFp(this.configuration).iamBackofficeUnassignRoles(body, options).then((request) => request(this.axios, this.basePath));
     }
 }
