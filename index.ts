@@ -12,16 +12,7 @@
  * Do not edit the class manually.
  */
 
-/**
- * 
- * @export
- * @interface IambackofficeUnassignRolesResponse
- */
-export interface IambackofficeUnassignRolesResponse {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IambackofficeUnassignRolesResponse
-     */
-    'roleCodes'?: Array<string>;
-}
+
+export * from "./api";
+export * from "./configuration";
+
